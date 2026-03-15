@@ -10,6 +10,8 @@ interface Book {
   description?: string;
   categoryId: string;
   ratingId: string;
+  category?: { id: string; title: string };
+  rating?: { id: string; ratingName: string };
 }
 
 export default function BooksList() {
@@ -88,6 +90,8 @@ export default function BooksList() {
                 <th>Title</th>
                 <th>Author</th>
                 <th>Price</th>
+                <th>Category</th>
+                <th>Rating</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -97,6 +101,8 @@ export default function BooksList() {
                   <td><Link to={`/books/${book.id}`}>{book.title}</Link></td>
                   <td>{book.author}</td>
                   <td>${book.price}</td>
+                  <td>{book.category?.title ?? '—'}</td>
+                  <td>{book.rating?.ratingName ?? '—'}</td>
                   <td className="actions-cell">
                     <button className="btn btn-sm btn-secondary" onClick={() => navigate(`/books/${book.id}/edit`)}>Edit</button>
                     <button className="btn btn-sm btn-danger" onClick={() => handleDelete(book.id)}>Delete</button>

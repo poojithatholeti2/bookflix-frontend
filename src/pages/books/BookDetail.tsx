@@ -10,6 +10,8 @@ interface Book {
   description?: string;
   categoryId: string;
   ratingId: string;
+  category?: { id: string; title: string };
+  rating?: { id: string; ratingName: string };
 }
 
 export default function BookDetail() {
@@ -60,8 +62,8 @@ export default function BookDetail() {
       <div className="detail-card">
         <div className="detail-row"><span className="label">Author</span><span>{book.author}</span></div>
         <div className="detail-row"><span className="label">Price</span><span>${book.price}</span></div>
-        <div className="detail-row"><span className="label">Category ID</span><span className="mono">{book.categoryId}</span></div>
-        <div className="detail-row"><span className="label">Rating ID</span><span className="mono">{book.ratingId}</span></div>
+        <div className="detail-row"><span className="label">Category</span><span>{book.category?.title ?? '—'}</span></div>
+        <div className="detail-row"><span className="label">Rating</span><span>{book.rating?.ratingName ?? '—'}</span></div>
         {book.description && (
           <div className="detail-row detail-description">
             <span className="label">Description</span>
